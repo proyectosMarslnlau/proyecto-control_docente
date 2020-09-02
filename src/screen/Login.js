@@ -75,12 +75,12 @@ const Login = ({navigation}) => {
               <View style={styles.entradas}>
                 <Input
                   placeholder="Usuario"
-                  leftIcon={<Icon name="user" size={20} color="black" />}
+                  leftIcon={<Icon name="user" size={18} color="black" />}
                   onChangeText={onChangeUsuario}
                 />
                 <Input
                   placeholder="Password"
-                  leftIcon={<Icon name="lock" size={20} color="black" />}
+                  leftIcon={<Icon name="lock" size={18} color="black" />}
                   onChangeText={onChangePass}
                 />
                 <Button
@@ -92,8 +92,11 @@ const Login = ({navigation}) => {
                       style={styles.icono}
                     />
                   }
-                  title="INGRESAR "
+                  title="Ingresar"
                   onPress={onPressForm}
+                  buttonStyle={{
+                    backgroundColor: '#2F8383',
+                  }}
                 />
               </View>
             </Fragment>
@@ -139,6 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   titulo_formulario: {
     marginHorizontal: 10,
@@ -146,12 +150,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   entradas: {
+    width: DEVICE_WIDTH * 0.8,
     marginHorizontal: 10,
     backgroundColor: 'white',
     borderRadius: 5,
   },
   icono: {
-    marginHorizontal: 4,
+    marginHorizontal: 5,
   },
   //-------------------------------------------------
   seccion_2: {

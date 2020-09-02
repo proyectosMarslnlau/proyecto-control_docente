@@ -26,6 +26,28 @@ const Form = () => {
   const [slider, guardarSlider] = useState(10);
   //
   const [check, guardarCheck] = useState(true);
+  //
+  const [botonInicio, guardarBotonInicio] = useState({
+    aprobacion: false,
+    tiempo: '',
+  });
+  const [botonFinal, guardarBotonFinal] = useState({
+    aprobacion: false,
+    tiempo: '',
+  });
+  //--------------------------------
+  const onPressHoraInicio = () => {
+    guardarBotonInicio({
+      aprobacion: true,
+      tiempo: '12 : 00',
+    });
+  };
+  const onPressHoraInicioBack = () => {
+    guardarBotonInicio({
+      aprobacion: false,
+      tiempo: 'Obtener Hora de Inicio',
+    });
+  };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -68,21 +90,47 @@ const Form = () => {
           <View style={styles.entradas}>
             <Text style={styles.left}>Obtener Fecha de Inicio de Clase </Text>
             <View style={styles.right}>
-              <Button
-                icon={
-                  <Icon
-                    name="edit"
-                    size={15}
-                    color="white"
-                    style={styles.icono}
-                  />
-                }
-                title="Obtener Hora de Inicio "
-                style={styles.boton}
-                buttonStyle={{
-                  backgroundColor: '#4C2872',
-                }}
-              />
+              {botonInicio.aprobacion ? (
+                <Button
+                  icon={
+                    <Icon
+                      name="edit"
+                      size={15}
+                      color="white"
+                      style={styles.icono}
+                    />
+                  }
+                  title={botonInicio.tiempo}
+                  style={styles.boton}
+                  buttonStyle={{
+                    backgroundColor: '#867B29',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'Exo2-Medium',
+                  }}
+                  onPress={onPressHoraInicioBack}
+                />
+              ) : (
+                <Button
+                  icon={
+                    <Icon
+                      name="edit"
+                      size={15}
+                      color="white"
+                      style={styles.icono}
+                    />
+                  }
+                  title="Obtener Hora de Inicio "
+                  style={styles.boton}
+                  buttonStyle={{
+                    backgroundColor: '#4C2872',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'Exo2-Medium',
+                  }}
+                  onPress={onPressHoraInicio}
+                />
+              )}
             </View>
           </View>
           <View style={styles.entradas}>
@@ -101,6 +149,9 @@ const Form = () => {
                 style={styles.boton}
                 buttonStyle={{
                   backgroundColor: '#4C2872',
+                }}
+                titleStyle={{
+                  fontFamily: 'Exo2-Medium',
                 }}
               />
             </View>
@@ -152,6 +203,9 @@ const Form = () => {
               marginVertical: 8,
               width: DEVICE_WIDTH * 0.8,
             }}
+            titleStyle={{
+              fontFamily: 'Exo2-Medium',
+            }}
           />
           <Button
             icon={
@@ -168,6 +222,9 @@ const Form = () => {
               backgroundColor: '#C45E3B',
               marginVertical: 8,
               width: DEVICE_WIDTH * 0.8,
+            }}
+            titleStyle={{
+              fontFamily: 'Exo2-Medium',
             }}
           />
         </View>
@@ -189,7 +246,8 @@ const styles = StyleSheet.create({
   },
   texto_titulo_principal: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 25,
+    fontFamily: 'Exo2-Medium',
   },
   seccion_1: {
     width: DEVICE_WIDTH,
@@ -207,6 +265,7 @@ const styles = StyleSheet.create({
   left: {
     flex: 1,
     width: DEVICE_WIDTH * 0.4,
+    fontFamily: 'Montserrat-Medium',
   },
   right: {
     width: DEVICE_WIDTH * 0.6,
@@ -249,6 +308,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     backgroundColor: '#3B9E99',
+
+    fontFamily: 'Exo2-Medium',
   },
   slider: {
     marginHorizontal: 5,
@@ -266,6 +327,7 @@ const styles = StyleSheet.create({
   },
   text_check: {
     color: '#fff',
+    fontFamily: 'Montserrat-Medium',
   },
   seccion_3: {
     flex: 1,

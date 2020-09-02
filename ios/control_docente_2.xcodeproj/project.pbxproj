@@ -32,6 +32,10 @@
 		022F62D833BD4C7EAF5583FE /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0721674DA32443AC833DE315 /* Octicons.ttf */; };
 		16917B938041420BA7E0C0C4 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFDA4DAD39C54A8F86B1E3C5 /* SimpleLineIcons.ttf */; };
 		DB261FE57E2846D9AFA6BE00 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 169F7A7F8FB0429A94AC949B /* Zocial.ttf */; };
+		72CD944106874A71815D3B05 /* Exo2-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C79E396C4F84D7D92A5807D /* Exo2-Italic.ttf */; };
+		85ABA3CCCEAD464282428B48 /* Exo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FAEF9895D2043D3BB46F2D6 /* Exo2-Medium.ttf */; };
+		565E08860F6F4544B1794511 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9E19B4DC04DDEA6144C59 /* Montserrat-Medium.ttf */; };
+		6D1ABD3D481A4E24B28C2750 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFB47913E6B7465E86B710A5 /* Montserrat-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,10 @@
 		0721674DA32443AC833DE315 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		EFDA4DAD39C54A8F86B1E3C5 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		169F7A7F8FB0429A94AC949B /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0C79E396C4F84D7D92A5807D /* Exo2-Italic.ttf */ = {isa = PBXFileReference; name = "Exo2-Italic.ttf"; path = "../src/assets/fonts/Exo2-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1FAEF9895D2043D3BB46F2D6 /* Exo2-Medium.ttf */ = {isa = PBXFileReference; name = "Exo2-Medium.ttf"; path = "../src/assets/fonts/Exo2-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6CB9E19B4DC04DDEA6144C59 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; name = "Montserrat-Medium.ttf"; path = "../src/assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EFB47913E6B7465E86B710A5 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +217,10 @@
 				0721674DA32443AC833DE315 /* Octicons.ttf */,
 				EFDA4DAD39C54A8F86B1E3C5 /* SimpleLineIcons.ttf */,
 				169F7A7F8FB0429A94AC949B /* Zocial.ttf */,
+				0C79E396C4F84D7D92A5807D /* Exo2-Italic.ttf */,
+				1FAEF9895D2043D3BB46F2D6 /* Exo2-Medium.ttf */,
+				6CB9E19B4DC04DDEA6144C59 /* Montserrat-Medium.ttf */,
+				EFB47913E6B7465E86B710A5 /* Montserrat-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -368,6 +380,10 @@
 				022F62D833BD4C7EAF5583FE /* Octicons.ttf in Resources */,
 				16917B938041420BA7E0C0C4 /* SimpleLineIcons.ttf in Resources */,
 				DB261FE57E2846D9AFA6BE00 /* Zocial.ttf in Resources */,
+				72CD944106874A71815D3B05 /* Exo2-Italic.ttf in Resources */,
+				85ABA3CCCEAD464282428B48 /* Exo2-Medium.ttf in Resources */,
+				565E08860F6F4544B1794511 /* Montserrat-Medium.ttf in Resources */,
+				6D1ABD3D481A4E24B28C2750 /* Montserrat-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

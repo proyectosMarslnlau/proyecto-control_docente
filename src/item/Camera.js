@@ -88,6 +88,9 @@ const Camera = () => {
             <Icon name="upload" size={15} color="white" style={styles.icono} />
           }
           title="Subir imagen Foto"
+          titleStyle={{
+            fontFamily: 'Exo2-Italic',
+          }}
         />
       </View>
     </View>

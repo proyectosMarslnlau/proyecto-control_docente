@@ -16,7 +16,10 @@ const Select = () => {
       style={styles.selector}
       onValueChange={(itemValue, itemIndex) =>
         guardarState({language: itemValue})
-      }>
+      }
+      pickerStyleType={{
+        fontFamily: 'Montserrat-Medium',
+      }}>
       <Picker.Item
         label="Seleccion una Opcion"
         value="java"
@@ -39,9 +42,11 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH * 0.6,
     borderRadius: 10,
     backgroundColor: '#3B9E99',
+    fontFamily: 'Montserrat-Medium',
   },
   options: {
     color: 'white',
+    fontFamily: 'Montserrat-Medium',
   },
 });
 export default Select;

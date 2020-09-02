@@ -77,6 +77,10 @@ const Login = ({navigation}) => {
                   placeholder="Usuario"
                   leftIcon={<Icon name="user" size={18} color="black" />}
                   onChangeText={onChangeUsuario}
+                  inputStyle={{
+                    fontSize: 15,
+                    fontFamily: 'Montserrat-Medium',
+                  }}
                 />
                 <Input
                   placeholder="Password"
@@ -92,10 +96,14 @@ const Login = ({navigation}) => {
                       style={styles.icono}
                     />
                   }
+                  style={styles.boton}
                   title="Ingresar"
                   onPress={onPressForm}
                   buttonStyle={{
                     backgroundColor: '#2F8383',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'Exo2-Medium',
                   }}
                 />
               </View>
@@ -107,7 +115,7 @@ const Login = ({navigation}) => {
       <View style={styles.seccion_2}></View>
       <View style={styles.seccion_3}>
         <Text style={styles.titulo_footer}>
-          Facultad de Ingenieria Electronica
+          {'\u00A9'}Facultad de Ingenieria Electronica
         </Text>
       </View>
       {/*MENSAJE DE ERROR*/}
@@ -146,7 +154,8 @@ const styles = StyleSheet.create({
   },
   titulo_formulario: {
     marginHorizontal: 10,
-    fontFamily: 'Cochin',
+    marginBottom: 5,
+    fontFamily: 'Montserrat-Medium',
     fontSize: 20,
   },
   entradas: {
@@ -173,6 +182,11 @@ const styles = StyleSheet.create({
     borderTopColor: 'black',
     marginHorizontal: 10,
     color: '#fff',
+    fontFamily: 'Exo2-Italic',
+  },
+  boton: {
+    fontFamily: 'Exo2-Medium',
+    color: 'black',
   },
 });
 export default Login;

@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Button,
-  Image,
-} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 //Const
+import {Button} from 'react-native-elements';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+//
 const Camera = () => {
   const [state, guardarState] = useState({
     resourcePath: {},
   });
 
+  if (Object.keys(state.resourcePath).length === 0) {
+    console.log('vacio');
+  } else {
+    console.log('revisar');
+  }
   const selectFile = () => {
     var options = {
       title: 'Select Image',
@@ -45,6 +46,7 @@ const Camera = () => {
         guardarState({
           resourcePath: source,
         });
+        console.log('LENNY LAURA VALENCIA');
       }
     });
   };
@@ -52,21 +54,41 @@ const Camera = () => {
   return (
     <View style={styles.container}>
       <View style={styles.container}>
-        <Image
-          source={{
-            uri: 'data:image/jpeg;base64,' + state.resourcePath.data,
-          }}
-          style={{width: 100, height: 100}}
-        />
-        <Image
-          source={{uri: state.resourcePath.uri}}
-          style={{width: 200, height: 200}}
-        />
+        {Object.keys(state.resourcePath).length === 0 ? (
+          <Image
+            source={require('../resourse/img/images.png')}
+            style={{width: 100, height: 100, marginBottom: 5}}
+          />
+        ) : (
+          <Image
+            source={{
+              uri: 'data:image/jpeg;base64,' + state.resourcePath.data,
+            }}
+            style={{width: 100, height: 100, marginBottom: 5}}
+          />
+        )}
+
+        {Object.keys(state.resourcePath).length === 0 ? (
+          <Image
+            source={require('../resourse/img/images.png')}
+            style={{width: 200, height: 200, marginBottom: 5}}
+          />
+        ) : (
+          <Image
+            source={{uri: state.resourcePath.uri}}
+            style={{width: 200, height: 200, marginBottom: 5}}
+          />
+        )}
+
         <Text style={{alignItems: 'center'}}>{state.resourcePath.uri}</Text>
 
-        <TouchableOpacity onPress={selectFile} style={styles.button}>
-          <Text style={styles.buttonText}>Select File</Text>
-        </TouchableOpacity>
+        <Button
+          onPress={selectFile}
+          icon={
+            <Icon name="upload" size={15} color="white" style={styles.icono} />
+          }
+          title="Subir imagen Foto"
+        />
       </View>
     </View>
   );
@@ -77,7 +99,7 @@ export default Camera;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 30,
+    padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
@@ -95,5 +117,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     color: '#fff',
+  },
+  icono: {
+    marginHorizontal: 5,
   },
 });

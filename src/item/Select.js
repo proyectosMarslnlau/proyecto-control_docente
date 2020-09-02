@@ -8,7 +8,7 @@ const {height: DEVICE_HEIGHT} = Dimensions.get('window');
 //---------------------------------------------------------
 const Select = () => {
   const [state, guardarState] = useState({
-    language: 'java',
+    language: 'Seleccione una opcion',
   });
   return (
     <Picker
@@ -17,7 +17,11 @@ const Select = () => {
       onValueChange={(itemValue, itemIndex) =>
         guardarState({language: itemValue})
       }>
-      <Picker.Item label="Java" value="java" />
+      <Picker.Item
+        label="Seleccion una Opcion"
+        value="java"
+        itemStyle={styles.options}
+      />
       <Picker.Item label="JavaScript" value="js" />
       <Picker.Item label="Java" value="java" />
       <Picker.Item label="JavaScript" value="js" />
@@ -30,10 +34,14 @@ const Select = () => {
 const styles = StyleSheet.create({
   container: {},
   selector: {
-    color: 'black',
+    color: 'white',
     height: 50,
     width: DEVICE_WIDTH * 0.6,
-    backgroundColor: 'white',
+    borderRadius: 10,
+    backgroundColor: '#3B9E99',
+  },
+  options: {
+    color: 'white',
   },
 });
 export default Select;

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Dimensions,
   KeyboardAvoidingView,
+  Image,
 } from 'react-native';
 //Importamos de react native elemets
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -61,7 +62,7 @@ const Login = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.seccion_1}>
         <View style={styles.seccion_1_1}>
-          <Text>IMAGEN</Text>
+          <Image source={require('../resourse/img/logo.jpg')} />
         </View>
         <KeyboardAvoidingView
           style={styles.container}
@@ -102,7 +103,9 @@ const Login = ({navigation}) => {
 
       <View style={styles.seccion_2}></View>
       <View style={styles.seccion_3}>
-        <Text>FOOTER</Text>
+        <Text style={styles.titulo_footer}>
+          Facultad de Ingenieria Electronica
+        </Text>
       </View>
       {/*MENSAJE DE ERROR*/}
       <AlertError alerta={alerta} guardarAlerta={guardarAlerta} />
@@ -120,13 +123,14 @@ const styles = StyleSheet.create({
   seccion_1: {
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT * 0.6,
-    backgroundColor: 'green',
+    backgroundColor: 'white',
   },
   //------------------------------------- Imagen
   seccion_1_1: {
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT * 0.7 * 0.4,
-    backgroundColor: 'blue',
+    alignItems: 'center',
+    backgroundColor: '#591822',
   },
   //------------------------------------ formulario
   seccion_1_2: {
@@ -158,7 +162,12 @@ const styles = StyleSheet.create({
   seccion_3: {
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT * 0.05,
-    backgroundColor: 'black',
+    backgroundColor: '#af253b',
+  },
+  titulo_footer: {
+    borderTopColor: 'black',
+    marginHorizontal: 10,
+    color: '#fff',
   },
 });
 export default Login;

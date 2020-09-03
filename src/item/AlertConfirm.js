@@ -10,6 +10,7 @@ const AlertConfirm = ({
   guardarBotonInicio,
   guardarBotonFinal,
   valor,
+  reset,
 }) => {
   console.log(estado);
   const onPressAction = () => {
@@ -33,6 +34,7 @@ const AlertConfirm = ({
       guardarEstado(false);
     } else if (valor === 4) {
       alert('DATOS GUARDADOS');
+      reset();
       guardarEstado(false);
     }
   };

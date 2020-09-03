@@ -45,6 +45,8 @@ const Form = () => {
   const [estado, guardarEstado] = useState(false);
   //
   const [valor, guardarValor] = useState(0);
+  //
+  const [reiniciar, guardarReiniciar] = useState(false);
   //------------------------------------********************--------
   const onPressFecha = () => {
     guardarValor(1);
@@ -76,14 +78,16 @@ const Form = () => {
       aprobacion: false,
       tiempo: '',
     });
-    gutadarBotonInicio({
+    guardarBotonInicio({
       aprobacion: false,
       tiempo: '',
     });
     //
     guardarEstado(false);
     guardarValor(0);
+    guardarReiniciar(true);
   };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -293,7 +297,7 @@ const Form = () => {
               )}
             </View>
           </View>
-          <Camera />
+          <Camera reiniciar={reiniciar} guardarReiniciar={guardarReiniciar} />
         </View>
         <View style={styles.seccion_3}>
           <Button
@@ -345,6 +349,7 @@ const Form = () => {
         guardarBotonInicio={guardarBotonInicio}
         botonFinal={botonFinal}
         guardarBotonFinal={guardarBotonFinal}
+        reset={reset}
       />
     </ScrollView>
   );

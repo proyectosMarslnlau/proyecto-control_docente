@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 //Const
@@ -6,7 +6,16 @@ import {Button} from 'react-native-elements';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 //
-const Camera = () => {
+const Camera = ({reiniciar, guardarReiniciar}) => {
+  //------------------------------------------------------------
+  useEffect(() => {
+    if (reiniciar !== false) {
+      guardarState({
+        resourcePath: {},
+      });
+    }
+  }, [reiniciar]);
+  //-------------------------------------------------------------
   const [state, guardarState] = useState({
     resourcePath: {},
   });

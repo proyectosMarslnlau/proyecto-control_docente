@@ -22,6 +22,7 @@ const Camera = () => {
       customButtons: [],
       takePhotoButtonTitle: 'Tomar Foto',
       chooseFromLibraryButtonTitle: 'Buscar en mis Archivos',
+      chooseFromLibraryButtonTitle: null,
       storageOptions: {
         skipBackup: true,
         path: 'images',

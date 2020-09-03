@@ -13,10 +13,12 @@ import {
 import Select from '../item/Select';
 //
 import {Button, Input, Slider, CheckBox} from 'react-native-elements';
-
+//---------------------------------------------------------
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+//----------------------------------------------------
 import Camera from '../item/Camera';
+//-----------------------------------------------------
+import AlertConfirm from '../item/AlertConfirm';
 //---------------------------------------------------------
 const {width: DEVICE_WIDTH} = Dimensions.get('window');
 const {height: DEVICE_HEIGHT} = Dimensions.get('window');
@@ -25,8 +27,12 @@ const Form = () => {
   //
   const [slider, guardarSlider] = useState(10);
   //
-  const [check, guardarCheck] = useState(true);
+  const [check, guardarCheck] = useState(false);
   //
+  const [fechaInicio, guardarFechaInicio] = useState({
+    aprobacion: false,
+    tiempo: '',
+  });
   const [botonInicio, guardarBotonInicio] = useState({
     aprobacion: false,
     tiempo: '',
@@ -35,18 +41,48 @@ const Form = () => {
     aprobacion: false,
     tiempo: '',
   });
-  //--------------------------------
-  const onPressHoraInicio = () => {
-    guardarBotonInicio({
-      aprobacion: true,
-      tiempo: '12 : 00',
-    });
+  //
+  const [estado, guardarEstado] = useState(false);
+  //
+  const [valor, guardarValor] = useState(0);
+  //------------------------------------********************--------
+  const onPressFecha = () => {
+    guardarValor(1);
+    guardarEstado(true);
   };
-  const onPressHoraInicioBack = () => {
-    guardarBotonInicio({
+
+  //-------------------------- *****************------
+  const onPressHoraInicio = () => {
+    guardarValor(2);
+    guardarEstado(true);
+  };
+
+  const onPressHoraFinal = () => {
+    guardarValor(3);
+    guardarEstado(true);
+  };
+
+  const confirmar = () => {
+    guardarValor(4);
+    guardarEstado(true);
+  };
+
+  const reset = () => {
+    guardarBotonFinal({
       aprobacion: false,
-      tiempo: 'Obtener Hora de Inicio',
+      tiempo: '',
     });
+    guardarFechaInicio({
+      aprobacion: false,
+      tiempo: '',
+    });
+    gutadarBotonInicio({
+      aprobacion: false,
+      tiempo: '',
+    });
+    //
+    guardarEstado(false);
+    guardarValor(0);
   };
   return (
     <ScrollView>
@@ -57,9 +93,7 @@ const Form = () => {
         <View style={styles.seccion_1}>
           <View style={styles.entradas}>
             <Text style={styles.left}>BIENVENIDO : </Text>
-            <Text style={styles.titulo_docente}>
-              Ing Marcelo Poma Calle VALENCIA
-            </Text>
+            <Text style={styles.titulo_docente}>Ing Machicao</Text>
           </View>
           <View style={styles.entradas}>
             <Text style={styles.left}>Materias Actuales del docente : </Text>
@@ -87,15 +121,62 @@ const Form = () => {
               />
             </View>
           </View>
+
           <View style={styles.entradas}>
-            <Text style={styles.left}>Obtener Fecha de Inicio de Clase </Text>
+            <Text style={styles.left}>Obtener Fecha de Clase</Text>
+            <View style={styles.right}>
+              {fechaInicio.aprobacion ? (
+                <Button
+                  icon={
+                    <Icon
+                      name="check"
+                      size={20}
+                      color="white"
+                      style={styles.icono}
+                    />
+                  }
+                  title={fechaInicio.tiempo}
+                  style={styles.boton}
+                  buttonStyle={{
+                    backgroundColor: '#64C55F',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'Exo2-Medium',
+                    color: 'black',
+                  }}
+                />
+              ) : (
+                <Button
+                  icon={
+                    <Icon
+                      name="star"
+                      size={15}
+                      color="white"
+                      style={styles.icono}
+                    />
+                  }
+                  title="Obtener Fecha de Inicio"
+                  style={styles.boton}
+                  buttonStyle={{
+                    backgroundColor: '#4C2872',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'Exo2-Medium',
+                  }}
+                  onPress={onPressFecha}
+                />
+              )}
+            </View>
+          </View>
+          <View style={styles.entradas}>
+            <Text style={styles.left}>Obtener Hora Inicial de Clase </Text>
             <View style={styles.right}>
               {botonInicio.aprobacion ? (
                 <Button
                   icon={
                     <Icon
-                      name="edit"
-                      size={15}
+                      name="check"
+                      size={20}
                       color="white"
                       style={styles.icono}
                     />
@@ -103,12 +184,12 @@ const Form = () => {
                   title={botonInicio.tiempo}
                   style={styles.boton}
                   buttonStyle={{
-                    backgroundColor: '#867B29',
+                    backgroundColor: '#64C55F',
                   }}
                   titleStyle={{
                     fontFamily: 'Exo2-Medium',
+                    color: 'black',
                   }}
-                  onPress={onPressHoraInicioBack}
                 />
               ) : (
                 <Button
@@ -131,29 +212,6 @@ const Form = () => {
                   onPress={onPressHoraInicio}
                 />
               )}
-            </View>
-          </View>
-          <View style={styles.entradas}>
-            <Text style={styles.left}>Obtener Fecha de Fin de Clase</Text>
-            <View style={styles.right}>
-              <Button
-                icon={
-                  <Icon
-                    name="star"
-                    size={15}
-                    color="white"
-                    style={styles.icono}
-                  />
-                }
-                title="Obtener Hora de Final "
-                style={styles.boton}
-                buttonStyle={{
-                  backgroundColor: '#4C2872',
-                }}
-                titleStyle={{
-                  fontFamily: 'Exo2-Medium',
-                }}
-              />
             </View>
           </View>
           <View style={styles.entradas}>
@@ -189,6 +247,52 @@ const Form = () => {
               />
             </View>
           </View>
+          <View style={styles.entradas}>
+            <Text style={styles.left}>Obtener Hora Final de Clase </Text>
+            <View style={styles.right}>
+              {botonFinal.aprobacion ? (
+                <Button
+                  icon={
+                    <Icon
+                      name="check"
+                      size={20}
+                      color="white"
+                      style={styles.icono}
+                    />
+                  }
+                  title={botonFinal.tiempo}
+                  style={styles.boton}
+                  buttonStyle={{
+                    backgroundColor: '#64C55F',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'Exo2-Medium',
+                    color: 'black',
+                  }}
+                />
+              ) : (
+                <Button
+                  icon={
+                    <Icon
+                      name="edit"
+                      size={15}
+                      color="white"
+                      style={styles.icono}
+                    />
+                  }
+                  title="Obtener Hora Final  "
+                  style={styles.boton}
+                  buttonStyle={{
+                    backgroundColor: '#4C2872',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'Exo2-Medium',
+                  }}
+                  onPress={onPressHoraFinal}
+                />
+              )}
+            </View>
+          </View>
           <Camera />
         </View>
         <View style={styles.seccion_3}>
@@ -206,6 +310,7 @@ const Form = () => {
             titleStyle={{
               fontFamily: 'Exo2-Medium',
             }}
+            onPress={confirmar}
           />
           <Button
             icon={
@@ -229,6 +334,18 @@ const Form = () => {
           />
         </View>
       </View>
+      {/* */}
+      <AlertConfirm
+        estado={estado}
+        valor={valor}
+        guardarEstado={guardarEstado}
+        fechaInicio={fechaInicio}
+        guardarFechaInicio={guardarFechaInicio}
+        botonInicio={botonInicio}
+        guardarBotonInicio={guardarBotonInicio}
+        botonFinal={botonFinal}
+        guardarBotonFinal={guardarBotonFinal}
+      />
     </ScrollView>
   );
 };

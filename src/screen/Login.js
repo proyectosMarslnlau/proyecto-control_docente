@@ -115,7 +115,7 @@ const Login = ({navigation}) => {
       <View style={styles.seccion_2}></View>
       <View style={styles.seccion_3}>
         <Text style={styles.titulo_footer}>
-          {'\u00A9'}Facultad de Ingenieria Electronica
+          {'\u00A9'}Carrera de Ingenieria Electrónica
         </Text>
       </View>
       {/*MENSAJE DE ERROR*/}

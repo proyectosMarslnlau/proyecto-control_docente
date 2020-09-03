@@ -25,11 +25,9 @@ const Select = () => {
         value="java"
         itemStyle={styles.options}
       />
-      <Picker.Item label="JavaScript" value="js" />
-      <Picker.Item label="Java" value="java" />
-      <Picker.Item label="JavaScript" value="js" />
-      <Picker.Item label="Java" value="java" />
-      <Picker.Item label="JavaScript" value="js" />
+      <Picker.Item label="Telecomunicaciónes I" value="js" />
+      <Picker.Item label="Laboratorio Telecomunicaciones I" value="java" />
+      <Picker.Item label="Proyecto " value="j2s" />
     </Picker>
   );
 };

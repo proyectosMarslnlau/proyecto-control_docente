@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 
 import {
   View,
@@ -15,12 +15,16 @@ import {Input, Button} from 'react-native-elements';
 import AlertError from '../item/AlertError';
 //Importmaos el modal
 import ModalLoading from '../item/ModalLoading';
-
+//-----------------------------------------------------------------
+import AsyncStorage from '@react-native-community/async-storage';
 //---------------------------------------------------------
 const {width: DEVICE_WIDTH} = Dimensions.get('window');
 const {height: DEVICE_HEIGHT} = Dimensions.get('window');
 //---------------------------------------------------------
 const Login = ({navigation}) => {
+  useEffect(() => {
+    getData();
+  }, []);
   //----------------------------------------
   const [user, guardarUser] = useState('');
   const [pass, guardarPass] = useState('');
@@ -52,17 +56,45 @@ const Login = ({navigation}) => {
       });
       setModalVisible(true);
       setTimeout(() => {
+        storeData('logueado');
         setModalVisible(false);
+        reset();
         navigation.navigate('form');
       }, 2000);
       //navigation.navigate('form');
     }
   };
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_ingreso', value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_ingreso');
+      if (value === 'logueado') {
+        navigation.navigate('form');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const reset = () => {
+    guardarUser('');
+    guardarPass('');
+  };
   return (
     <View style={styles.container}>
       <View style={styles.seccion_1}>
         <View style={styles.seccion_1_1}>
-          <Image source={require('../resourse/img/logo.jpg')} />
+          <Image
+            source={require('../resourse/img/etnf.jpg')}
+            style={styles.imagen}
+          />
         </View>
         <KeyboardAvoidingView
           style={styles.container}
@@ -81,11 +113,13 @@ const Login = ({navigation}) => {
                     fontSize: 15,
                     fontFamily: 'Montserrat-Medium',
                   }}
+                  value={user}
                 />
                 <Input
                   placeholder="Password"
                   leftIcon={<Icon name="lock" size={18} color="black" />}
                   onChangeText={onChangePass}
+                  value={pass}
                 />
                 <Button
                   icon={
@@ -142,6 +176,10 @@ const styles = StyleSheet.create({
     height: DEVICE_HEIGHT * 0.7 * 0.4,
     alignItems: 'center',
     backgroundColor: '#591822',
+  },
+  imagen: {
+    width: DEVICE_WIDTH,
+    height: DEVICE_HEIGHT * 0.28,
   },
   //------------------------------------ formulario
   seccion_1_2: {

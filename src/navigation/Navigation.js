@@ -34,6 +34,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {}
         <Stack.Screen
           name="login"
           component={Login}

@@ -3,6 +3,9 @@ import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 
 import AwesomeAlert from 'react-native-awesome-alerts';
+//-----------------------------------------------------------------
+import AsyncStorage from '@react-native-community/async-storage';
+
 const AlertConfirm = ({
   estado,
   guardarEstado,
@@ -19,23 +22,54 @@ const AlertConfirm = ({
         aprobacion: true,
         tiempo: '02-09-2020',
       });
+      //---------------------
+      storeFecha('realizado');
+      //---------------------
       guardarEstado(false);
     } else if (valor === 2) {
       guardarBotonInicio({
         aprobacion: true,
         tiempo: '21 : 20',
       });
+      //---------------------
+      storeHoraInicio('realizado');
+      //---------------------
       guardarEstado(false);
     } else if (valor === 3) {
       guardarBotonFinal({
         aprobacion: true,
         tiempo: '21 : 23',
       });
+      //---------------------
+      storeHoraFinal('realizado');
+      //---------------------
       guardarEstado(false);
     } else if (valor === 4) {
       alert('DATOS GUARDADOS');
       reset();
       guardarEstado(false);
+    }
+  };
+
+  const storeFecha = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_fecha', value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const storeHoraInicio = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_entrada', value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const storeHoraFinal = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_salida', value);
+    } catch (e) {
+      console.log(e);
     }
   };
   return (

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   View,
@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 //--------------------------------------------------------
 import Select from '../item/Select';
+import SelectPlataformas from '../item/SelectPlataformas';
+
 //
 import {Button, Input, Slider, CheckBox} from 'react-native-elements';
 //---------------------------------------------------------
@@ -19,11 +21,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Camera from '../item/Camera';
 //-----------------------------------------------------
 import AlertConfirm from '../item/AlertConfirm';
+
+//-----------------------------------------------------------------
+import AsyncStorage from '@react-native-community/async-storage';
+import Navigation from '../navigation/Navigation';
 //---------------------------------------------------------
 const {width: DEVICE_WIDTH} = Dimensions.get('window');
 const {height: DEVICE_HEIGHT} = Dimensions.get('window');
 //---------------------------------------------------------
-const Form = () => {
+const Form = ({navigation}) => {
+  useEffect(() => {
+    getDataFecha();
+    getDataIngreso();
+    getDataSalida();
+  }, []);
   //
   const [slider, guardarSlider] = useState(10);
   //
@@ -86,8 +97,71 @@ const Form = () => {
     guardarEstado(false);
     guardarValor(0);
     guardarReiniciar(true);
+    storeDataResult('');
+  };
+  const getDataFecha = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_fecha');
+      console.log(value);
+      if (value === 'realizado') {
+        guardarFechaInicio({
+          aprobacion: true,
+          tiempo: '02-09-2020',
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const getDataIngreso = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_entrada');
+      if (value === 'realizado') {
+        guardarBotonInicio({
+          aprobacion: true,
+          tiempo: '21 : 20',
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const getDataSalida = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_salida');
+      if (value === 'realizado') {
+        guardarBotonFinal({
+          aprobacion: true,
+          tiempo: '21 : 23',
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const cancelar = () => {
+    storeData('');
+    navigation.navigate('login');
   };
 
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_ingreso', value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const storeDataResult = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_fecha', value);
+      await AsyncStorage.setItem('@storage_entrada', value);
+      await AsyncStorage.setItem('@storage_salida', value);
+
+      console.log('ddddd');
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -97,7 +171,7 @@ const Form = () => {
         <View style={styles.seccion_1}>
           <View style={styles.entradas}>
             <Text style={styles.left}>BIENVENIDO : </Text>
-            <Text style={styles.titulo_docente}>Ing Machicao</Text>
+            <Text style={styles.titulo_docente}>Ing Juan Carlos Machicao</Text>
           </View>
           <View style={styles.entradas}>
             <Text style={styles.left}>Materias Actuales del docente : </Text>
@@ -220,7 +294,7 @@ const Form = () => {
           </View>
           <View style={styles.entradas}>
             <Text style={styles.left}>Plataforma utilizada </Text>
-            <Select />
+            <SelectPlataformas />
           </View>
 
           <View style={styles.entradas}>
@@ -335,6 +409,7 @@ const Form = () => {
             titleStyle={{
               fontFamily: 'Exo2-Medium',
             }}
+            onPress={cancelar}
           />
         </View>
       </View>
